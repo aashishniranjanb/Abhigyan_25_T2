@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abhigyan 25 – Sustainable Synergy</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;700;900&family=Satisfy&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1.1" />
+  <!-- Libs (optional but safe to keep) -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <!-- Custom cursor (hidden on touch) -->
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" aria-hidden="true"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- 3D Background -->
+  <div id="three-bg"></div>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <div class="loader-circle"></div>
+      <div class="loader-text">Loading Experience...</div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+<header class="top-header">
+  <div class="logo-wrapper">
+    <img src="images/electrum-logo.png" alt="Electron Club Logo" class="header-logo">
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-links">
+      <a href="#" class="nav-link active" data-page="home">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#" class="nav-link" data-page="events">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Events</span>
+      </a>
+      <a href="#" class="nav-link" data-page="about">
+        <i class="fas fa-info-circle"></i>
+        <span>About</span>
+      </a>
+      <a href="#" class="nav-link" data-page="team">
+        <i class="fas fa-users"></i>
+        <span>Team</span>
+      </a>
+      <a href="#" class="nav-link" data-page="past-events">
+        <i class="fas fa-history"></i>
+        <span>Past Editions</span>
+      </a>
+      <a href="#" class="nav-link" data-page="contact">
+        <i class="fas fa-envelope"></i>
+        <span>Contact</span>
+      </a>
+    </div>
+
+
+    <div class="hamburger-menu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+
+  </nav>
+
+  <div class="logo-wrapper">
+    <img src="images\srm_logo.png" alt="SRM Logo" class="header-logo">
+  </div>
+</header>
+  <!-- HOME PAGE -->
+  <div class="page active" id="home">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="floating-elements" id="floating-elements"></div>
+      <h1 class="hero-title">Abhigyan '25</h1>
+            <p class="hero-subtitle">Sustainable Synergy</p>
+            <p style="font-family: 'Poppins', sans-serif; font-size:20px; font-weight:500; line-height:1.6; color:#ffffff; opacity:1; margin-top:10px; text-align:center; letter-spacing:0.5px;"> By Electronics and Communication Department, SRMIST VDP Campus</p>
+      <div class="hero-year">2025</div>
+      <div style="margin-top: 50px;">
+        <a href="#" class="cta-button" data-page="events">Explore Events</a>
+      </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="section content-section">
+      <h2 class="section-title">Event Countdown</h2>
+      <div class="countdown" id="countdown">
+        <div class="countdown-item">
+          <span class="countdown-number" id="days">00</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="hours">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="minutes">00</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="seconds">00</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="abhigyan-poster">
+      <div class="poster-container">
+      <img src="images/Abhigyan '25 poster.jpg" alt="Abhigyan Poster" class="abhigyan-poster-img" />
+      </div>
+    </section>
+    <style>
+      .abhigyan-poster {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 0 40px 0;
+      background: none;
+      }
+      .poster-container {
+      background: linear-gradient(135deg, rgba(0,255,136,0.08), rgba(79,70,229,0.08));
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(0,255,136,0.10), 0 2px 8px rgba(0,0,0,0.10);
+      padding: 18px;
+      max-width: 800px;
+      width: 100%;
+      transition: box-shadow 0.3s;
+      }
+      .poster-container:hover {
+      box-shadow: 0 16px 48px rgba(0,255,136,0.18), 0 4px 16px rgba(0,0,0,0.15);
+      }
+      .abhigyan-poster-img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      display: block;
+      box-shadow: 0 4px 24px rgba(0,255,136,0.10);
+      background: #18181b;
+      }
+      @media (max-width: 600px) {
+      .poster-container {
+        max-width: 98vw;
+        padding: 6px;
+      }
+      .abhigyan-poster {
+        padding: 30px 0 20px 0;
+      }
+      .abhigyan-poster-img {
+        border-radius: 10px;
+      }
+      }
+    </style>
+  
+
+    <!-- More Featured Events -->
+    <section class="section content-section">
+  <h2 class="section-title">Featured Events</h2>
+  <div class="events-grid">
+    <div class="event-card">
+      <div class="event-image">
+        <img src="images\PAPERPRESENATION.png" alt="Paper Presentation">
+      </div>
+      <div class="event-content">
+        <h3 class="event-title">Paper Presentation</h3>
+        <p class="event-description">Share your research and innovative ideas with peers and faculty in this academic showcase.</p>
+        <span class="event-date">September 11, 2025</span>
+        <span class="event-venue">📍 SRM Campus</span>
+        <button class="register-button" onclick="registerEvent('Paper Presentation')" style="margin-top: auto;">
+          Register Now
+        </button>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-image">
+        <img src="images\MINDSPARK.png" alt="Mindspark">
+      </div>
+      <div class="event-content">
+        <h3 class="event-title">Mindspark</h3>
+        <p class="event-description">Test your mental agility and quick thinking in a series of challenging puzzles and quizzes.</p>
+        <span class="event-date">September 11, 2025</span>
+        <span class="event-venue">📍 SRM Campus</span>
+        <button class="register-button" onclick="registerEvent('Mindspark')" style="margin-top: auto;">
+          Register Now
+        </button>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-image">
+        <img src="images\VISIONX.png" alt="Vision X">
+      </div>
+      <div class="event-content">
+        <h3 class="event-title">Vision X</h3>
+        <p class="event-description">Compete in a technical event focused on computer vision, image processing, and AI applications.</p>
+        <span class="event-date">September 11, 2025</span>
+        <span class="event-venue">📍 SRM Campus</span>
+        <button class="register-button" onclick="registerEvent('Vision X')" style="margin-top: auto;">
+          Register Now
+        </button>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-image">
+        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop" alt="IPL Auction">
+      </div>
+      <div class="event-content">
+        <h3 class="event-title">IPL Auction</h3>
+        <p class="event-description">Step into the shoes of a team owner and build your dream team in this strategic mock auction.</p>
+        <span class="event-date">September 11, 2025</span>
+        <span class="event-venue">📍 SRM Campus</span>
+        <button class="register-button" onclick="registerEvent('IPL Auction')" style="margin-top: auto;">
+          Register Now
+        </button>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-image">
+        <img src="images\FREEFIRE.png" alt="Free Fire">
+      </div>
+      <div class="event-content">
+        <h3 class="event-title">Free Fire</h3>
+        <p class="event-description">A high-stakes gaming tournament for all Free Fire enthusiasts to showcase their skills.</p>
+        <span class="event-date">September 11, 2025</span>
+        <span class="event-venue">📍 SRM Campus</span>
+        <button class="register-button" onclick="registerEvent('Free Fire')" style="margin-top: auto;">
+          Register Now
+        </button>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-image">
+        <img src="images\BEATODYSSEY1.png" alt="Beat Odyssey">
+      </div>
+      <div class="event-content">
+        <h3 class="event-title">Beat Odyssey</h3>
+        <p class="event-description">Unleash your inner rhythm in this thrilling music and technology-focused event.</p>
+        <span class="event-date">September 11, 2025</span>
+        <span class="event-venue">📍 SRM Campus</span>
+        <button class="register-button" onclick="registerEvent('Beat Odyssey')" style="margin-top: auto;">
+          Register Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 40px; margin-bottom: 60px;">
+    <a href="#" class="cta-button" data-page="events">View All Events</a>
+  </div>
+</section>
+  </div>
+
+  <!-- EVENTS PAGE -->
+  <div class="page" id="events">
+    <section class="section" style="padding-top: 120px;">
+      <h2 class="section-title">All Events</h2>
+      <div class="events-grid">
+        <div class="event-card" data-image="images\PAPERPRESENATION.png">
+  <div class="event-image">
+    <img src="images\PAPERPRESENATION.png" alt="Paper Presentation">
+  </div>
+  <div class="event-content">
+    <h3 class="event-title">Paper Presentation</h3>
+    <p class="event-description">Share your research and innovative ideas with peers and faculty in this academic showcase.</p>
+    <span class="event-date">September 11, 2025</span>
+    <span class="event-venue">📍 SRM Campus</span>
+    <div class="button-container" style="width: 100%; text-align: center; margin-top: 20px;">
+      <button class="register-button" onclick="registerEvent('Paper Presentation')">
+        Register Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="event-card" data-image="images\VISIONX.png">
+  <div class="event-image">
+    <img src="images\POSTERPULSE.png" alt="Poster Pulse">
+  </div>
+  <div class="event-content">
+    <h3 class="event-title">Poster Pulse</h3>
+    <p class="event-description">Display your research findings and projects on posters and engage in one-on-one discussions with experts.</p>
+    <span class="event-date">September 11, 2025</span>
+    <span class="event-venue">📍 SRM Campus</span>
+    <div class="button-container" style="width: 100%; text-align: center; margin-top: 20px;">
+      <button class="register-button" onclick="registerEvent('Poster Pulse')">
+        Register Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="event-card" data-image="images/3.jpg">
+  <div class="event-image">
+    <img src="images\MINDSPARK.png" alt="Mindspark">
+  </div>
+  <div class="event-content">
+    <h3 class="event-title">Mindspark</h3>
+    <p class="event-description">Test your mental agility and quick thinking in a series of challenging puzzles and quizzes.</p>
+    <span class="event-date">September 11, 2025</span>
+    <span class="event-venue">📍 SRM Campus</span>
+    <div class="button-container" style="width: 100%; text-align: center; margin-top: 20px;">
+      <button class="register-button" onclick="registerEvent('Mindspark')">
+        Register Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="event-card" data-image="images/2.jpg">
+  <div class="event-image">
+    <img src="images\SCRAPBATTLE.png" alt="Scrap Battle">
+  </div>
+  <div class="event-content">
+    <h3 class="event-title">Scrap Battle</h3>
+    <p class="event-description">An ultimate robotics competition where creativity meets engineering excellence.</p>
+    <span class="event-date">September 11, 2025</span>
+    <span class="event-venue">📍 SRM Campus</span>
+    <div class="button-container" style="width: 100%; text-align: center; margin-top: 20px;">
+      <button class="register-button" onclick="registerEvent('Scrap Battle')">
+        Register Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="event-card" data-image="images\VISIONX.png">
+  <div class="event-image">
+    <img src="images\VISIONX.png" alt="Vision X">
+  </div>
+  <div class="event-content">
+    <h3 class="event-title">Vision X</h3>
+    <p class="event-description">Compete in a technical event focused on computer vision, image processing, and AI applications.</p>
+    <span class="event-date">September 11, 2025</span>
+    <span class="event-venue">📍 SRM Campus</span>
+    <div class="button-container" style="width: 100%; text-align: center; margin-top: 20px;">
+      <button class="register-button" onclick="registerEvent('Vision X')">
+        Register Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="event-card" data-image="images\TREASUREHUNT.png">
+  <div class="event-image">
+    <img src="images\TREASUREHUNT.png" alt="Treasure Hunt">
+  </div>
+  <div class="event-content">
+    <h3 class="event-title">Treasure Hunt</h3>
+    <p class="event-description">Put your wits to the test as you follow clues and solve puzzles to find the hidden treasure.</p>
+    <span class="event-date">September 11, 2025</span>
+    <span class="event-venue">📍 SRM Campus</span>
+    <div class="button-container" style="width: 100%; text-align: center; margin-top: 20px;">
+      <button class="register-button" onclick="registerEvent('Treasure Hunt')">
+        Register Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="event-card" data-image="images\FLUIDSTROKES.png">
+  <div class="event-image">
+    <img src="images\FLUIDSTROKES.png" alt="Fluid Strokes">
+  </div>
+  <div class="event-content">
+    <h3 class="event-title">Doodlescape</h3>
+    <p class="event-description">Unleash your creativity and artistic flair in a live doodling competition.</p>
+    <span class="event-date">September 11, 2025</span>
+    <span class="event-venue">📍 SRM Campus</span>
+    <div class="button-container" style="width: 100%; text-align: center; margin-top: 20px;">
+      <button class="register-button" onclick="registerEvent('Doodlescape')">
+        Register Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="event-card" data-image="images\LEAGENDANDTIMELINES.png">
+  <div class="event-image">
+    <img src="images\LEAGENDANDTIMELINES.png" alt="Legends & Timelines">
+  </div>
+  <div class="event-content">
+    <h3 class="event-title">Legends & Timelines</h3>
+    <p class="event-description">A competition testing your knowledge of history, mythology, and legendary tales.</p>
+    <span class="event-date">September 11, 2025</span>
+    <span class="event-venue">📍 SRM Campus</span>
+    <button onclick="registerEvent('Legends & Timelines')" style="margin-top: auto;">
+      Register Now
+    </button>
+  </div>
+</div>
+
+<div class="event-card" data-image="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=400&h=300&fit=crop">
+  <div class="event-image">
+    <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=400&h=300&fit=crop" alt="IPL Auction">
+  </div>
+  <div class="event-content">
+    <h3 class="event-title">IPL Auction</h3>
+    <p class="event-description">Step into the shoes of a team owner and build your dream team in this strategic mock auction.</p>
+    <span class="event-date">September 11, 2025</span>
+    <span class="event-venue">📍 SRM Campus</span>
+    <div class="button-container" style="width: 100%; text-align: center; margin-top: 20px;">
+      <button class="register-button" onclick="window.open('https://forms.gle/your-google-form-link','_blank')">
+        Register Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="event-card" data-image="images\FREEFIRE.png">
+  <div class="event-image">
+    <img src="images\FREEFIRE.png" alt="Free Fire">
+  </div>
+  <div class="event-content">
+    <h3 class="event-title">Free Fire</h3>
+    <p class="event-description">A high-stakes gaming tournament for all Free Fire enthusiasts to showcase their skills.</p>
+    <span class="event-date">September 11, 2025</span>
+    <span class="event-venue">📍 SRM Campus</span>
+    <button onclick="registerEvent('Free Fire')" style="margin-top: auto;">
+      Register Now
+    </button>
+  </div>
+</div>
+
+<div class="event-card" data-image="images\BEATODYSSEY1.png">
+  <div class="event-image">
+    <img src="images\BEATODYSSEY1.png" alt="Beat Odyssey">
+  </div>
+  <div class="event-content">
+    <h3 class="event-title">Beat Odyssey</h3>
+    <p class="event-description">Unleash your inner rhythm in this thrilling music and technology-focused event.</p>
+    <span class="event-date">September 11, 2025</span>
+    <span class="event-venue">📍 SRM Campus</span>
+    <button onclick="registerEvent('Beat Odyssey')" style="margin-top: auto;">
+      Register Now
+    </button>
+  </div>
+</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PAST EVENTS PAGE -->
+<div class="page" id="past-events">
+  <section class="section past-editions-section" style="padding-top: 120px;">
+    <h2 class="section-title">Past Editions</h2>
+    <div class="section-description">
+      A legacy of innovation. Explore the themes and milestones that have defined Abhigyan through the years, each edition building upon the last to push the boundaries of technology and engineering.
+    </div>
+    
+    <div class="timeline">
+      <div class="timeline-item past-edition-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-year">2024</span>
+          <h3 class="timeline-title">Abhigyan 2024: "Bendable Innovation"</h3>
+          <p class="timeline-description">
+            A groundbreaking symposium on flexible electronics and adaptive technologies, featuring revolutionary developments in bendable displays and wearable tech.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item past-edition-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-year">2023</span>
+          <h3 class="timeline-title">Abhigyan 2023: "AI Renaissance"</h3>
+          <p class="timeline-description">
+            The renaissance of artificial intelligence took center stage with cutting-edge AI demonstrations, machine learning competitions, and deep learning workshops.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item past-edition-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-year">2022</span>
+          <h3 class="timeline-title">Abhigyan 2022: "Digital Transformation"</h3>
+          <p class="timeline-description">
+            Embracing the digital revolution with a focus on IoT, cloud computing, and digital twin technologies, in partnership with leading tech companies.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item past-edition-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-year">2021</span>
+          <h3 class="timeline-title">Abhigyan 2021: "Connected Future"</h3>
+          <p class="timeline-description">
+            A global virtual symposium focused on 5G technologies, edge computing, and the future of connectivity, achieving record international participation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div> 
+
+  <!-- Registration Modal -->
+  <div id="registration-modal" class="modal hidden">
+    <div class="modal-content registration-modal-content">
+      <span class="modal-close">&times;</span>
+      <h2>Event Registration</h2>
+      <form id="registration-form">
+        <div class="form-group">
+          <label for="event-name">Event:</label>
+          <input type="text" id="event-name" name="event-name" readonly>
+        </div>
+        <div class="form-group">
+          <label for="participant-name">Full Name:</label>
+          <input type="text" id="participant-name" name="participant-name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="college">College/Institution:</label>
+          <input type="text" id="college" name="college" required>
+        </div>
+        <div class="form-group">
+          <label for="year">Year of Study:</label>
+          <select id="year" name="year" required>
+            <option value="">Select Year</option>
+            <option value="1st">1st Year</option>
+            <option value="2nd">2nd Year</option>
+            <option value="3rd">3rd Year</option>
+            <option value="4th">4th Year</option>
+            <option value="postgrad">Post Graduate</option>
+          </select>
+        </div>
+        <button type="submit" class="submit-btn">Complete Registration</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ABOUT PAGE -->
+  <div class="page" id="about">
+    <section class="section" style="padding-top: 120px;">
+      <h2 class="section-title">About Abhigyan 25</h2>
+      
+      <div style="max-width: 800px; margin: 0 auto; text-align: center; margin-bottom: 80px;">
+        <p style="font-size: 1.2rem; line-height: 1.8; color: rgba(255, 255, 255, 0.9); margin-bottom: 30px; opacity: 1;">
+          Abhigyan 25 represents the pinnacle of sustainable innovation and technological excellence. Our theme "Sustainable Synergy" embodies the perfect harmony between cutting-edge technology and environmental responsibility.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255, 255, 255, 0.8); opacity: 1;">
+          SRMIST Vadapalani's Department of Electronics & Communication Engineering presents this grand symposium showcasing the future of green technology, sustainable engineering practices, and innovative solutions for global challenges.
+        </p>
+      </div>
+
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-content" style="text-align: center; padding: 40px 30px;">
+            <div style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;">🌱</div>
+            <h3 class="event-title">Sustainability Focus</h3>
+            <p class="event-description">Every event and competition is designed with environmental consciousness, promoting green technology and sustainable engineering practices.</p>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-content" style="text-align: center; padding: 40px 30px;">
+            <div style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;">🚀</div>
+            <h3 class="event-title">Innovation Hub</h3>
+            <p class="event-description">Cutting-edge research presentations, breakthrough technology showcases, and revolutionary ideas that shape the future of engineering.</p>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-content" style="text-align: center; padding: 40px 30px;">
+            <div style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;">🤝</div>
+            <h3 class="event-title">Collaborative Learning</h3>
+            <p class="event-description">Fostering collaboration between students, researchers, and industry experts to create synergistic solutions for global challenges.</p>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-content" style="text-align: center; padding: 40px 30px;">
+            <div style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;">🎯</div>
+            <h3 class="event-title">Future Ready</h3>
+            <p class="event-description">Preparing the next generation of engineers with skills and knowledge essential for sustainable technological advancement.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="max-width: 1000px; margin: 80px auto 0; background: linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(15, 15, 15, 0.95)); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 25px; padding: 40px;">
+        <h3 style="color: var(--primary); font-size: 2rem; margin-bottom: 30px; text-align: center; opacity: 1;">Our Mission</h3>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.9); text-align: center; opacity: 1;">
+          To create a platform where sustainable technology meets innovative engineering, fostering the development of eco-friendly solutions that address real-world challenges while inspiring the next generation of environmentally conscious engineers and technologists.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- TEAM PAGE -->
+  <div class="page" id="team">
+    <section class="section" style="padding-top: 120px;">
+      <h2 class="section-title">Our Team</h2>
+      
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">SE</div>
+          <h3 class="team-name">Dr. Shirly Edward A</h3>
+          <p class="team-bio">B.E., M.Tech., Ph.D., Professor and Head</p>
+          <br>
+          <h3 class="team-role">Convenor</h3>
+          <p class="team-role"> hod.ece.vdp@srmist.edu.in</p>
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar">PR</div>
+          <h3 class="team-name">Dr. Priti Rishi</h3>
+          <p class="team-bio">B.E., M.E., Ph.D., Associate Professor</p>
+          <br>
+          <h3 class="team-role">Faculty Coordinator</h3>
+          <p class="team-role">pritir@srmist.edu.in</p>
+        </div>
+   
+        <div class="team-card">
+          <div class="team-avatar">SR</div>
+          <h3 class="team-name">Dr. Sathiya R</h3>
+          <p class="team-bio">B.E., M.E., Ph.D., Assistant Professor (Sr.G)</p>
+          <br>
+          <h3 class="team-role">Faculty Coordinator</h3>
+          <p class="team-role">sathiyar1@srmist.edu.in</p>
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar">VS</div>
+          <h3 class="team-name">Dr. Vasuki A </h3>
+          <br>
+          <p class="team-bio">B.E., M.E., Ph.D., Assistant Professor (Sr.G)</p>
+          <br>
+          <h3 class="team-role">Faculty Coordinator</h3>
+          <p class="team-role">vasukia@srmist.edu.in </p>
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar">TR</div>
+          <h3 class="team-name">Talha V R A</h3>
+          <p class="team-role">President</p>
+          <p class="team-bio">ECE-A</p>
+          
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar">SS</div>
+          <h3 class="team-name">Supriya S</h3>
+          <p class="team-role">Vice President</p>
+          <p class="team-bio">ECE-DS</p>
+          
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar">KS</div>
+          <h3 class="team-name">Karthikeya S</h3>
+          <p class="team-role">Secretary</p>
+          <p class="team-bio">ECE-DS</p>
+          
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar">KA</div>
+          <h3 class="team-name">Kate Jonita</h3>
+          <p class="team-role">Joint Secretary</p>
+          <p class="team-bio">ECE-A </p>
+          
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PAST EVENTS PAGE -->
+  <div class="page" id="past-events">
+    <section class="section" style="padding-top: 120px;">
+      <h2 class="section-title">Past Editions</h2>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2024</span>
+            <h3 class="timeline-title">Abhigyan 2024: "Bendable Innovation"</h3>
+            <p class="timeline-description">
+              A groundbreaking symposium focused on flexible electronics and adaptive technologies. Featured over 500 participants, 15 competitions, and showcased revolutionary developments in bendable displays, flexible solar panels, and wearable technology. The event established new standards for innovation in adaptive electronics.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2023</span>
+            <h3 class="timeline-title">Abhigyan 2023: "AI Renaissance"</h3>
+            <p class="timeline-description">
+              The renaissance of artificial intelligence took center stage with cutting-edge AI demonstrations, machine learning competitions, and deep learning workshops. Over 800 participants explored the transformative power of AI in various domains including healthcare, environmental monitoring, and smart infrastructure.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2022</span>
+            <h3 class="timeline-title">Abhigyan 2022: "Digital Transformation"</h3>
+            <p class="timeline-description">
+              Embracing the digital revolution with focus on IoT, cloud computing, and digital twin technologies. The event featured industry partnerships with leading tech companies and provided hands-on experience with emerging digital technologies that are reshaping industries.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2021</span>
+            <h3 class="timeline-title">Abhigyan 2021: "Connected Future"</h3>
+            <p class="timeline-description">
+              A virtual symposium that brought together minds from across the globe during challenging times. Focused on 5G technologies, edge computing, and the future of connectivity. Despite being online, it achieved record participation with attendees from over 20 countries.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2020</span>
+            <h3 class="timeline-title">Abhigyan 2020: "Smart Systems"</h3>
+            <p class="timeline-description">
+              The inaugural edition that laid the foundation for all future events. Focused on smart city technologies, automation, and intelligent systems. Though smaller in scale, it established the tradition of excellence and innovation that continues to define Abhigyan.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CONTACT PAGE -->
+  <div class="page" id="contact">
+    <section class="section" style="padding-top: 120px;">
+      <h2 class="section-title">Contact Us</h2>
+      
+      <div style="max-width: 800px; margin: 0 auto; text-align: center; margin-bottom: 60px;">
+        <p style="font-size: 1.2rem; line-height: 1.8; color: rgba(255, 255, 255, 0.9); opacity: 1;">
+          Have questions about Abhigyan 25? Want to participate or collaborate? We'd love to hear from you!
+        </p>
+      </div>
+
+      <div class="contact-form">
+        <form id="contactForm">
+          <div class="form-group">
+            <label class="form-label" for="name">Full Name</label>
+            <input type="text" id="name" name="name" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input type="email" id="email" name="email" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" class="form-input">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="institution">Institution/Organization</label>
+            <input type="text" id="institution" name="institution" class="form-input">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea id="message" name="message" class="form-textarea" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send Message</button>
+          
+          <div class="success-message" id="successMessage">
+            Thank you for your message! We'll get back to you within 24 hours.
+          </div>
+        </form>
+      </div>
+
+      <div style="max-width: 600px; margin: 60px auto 0; text-align: center;">
+        <div class="events-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+          <div style="background: linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(15, 15, 15, 0.95)); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 20px; padding: 30px;">
+            <h4 style="color: var(--primary); margin-bottom: 15px;">📧 Email</h4>
+            <p style="color: rgba(255, 255, 255, 0.9);">abhigyan2025@srmist.edu.in</p>
+          </div>
+          
+          <div style="background: linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(15, 15, 15, 0.95)); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 20px; padding: 30px;">
+            <h4 style="color: var(--primary); margin-bottom: 15px;">📱 Phone</h4>
+            <p style="color: rgba(255, 255, 255, 0.9);">+91 98765 43210</p>
+          </div>
+          
+          <div style="background: linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(15, 15, 15, 0.95)); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 20px; padding: 30px;">
+            <h4 style="color: var(--primary); margin-bottom: 15px;">📍 Location</h4>
+            <p style="color: rgba(255, 255, 255, 0.9);">SRMIST Vadapalani, Chennai</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="close-modal" id="close-modal">×</div>
+    <div class="modal-content">
+      <img id="modal-image" src="" alt="Event Poster">
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2025 Abhigyan — SRMIST Vadapalani</p>
+  </footer>
+
+<script src="script.js"></script>  
+</body>
+</html>
